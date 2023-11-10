@@ -1,4 +1,4 @@
-package uk.ac.rhul.cs2800;
+package application;
 
 import java.util.Objects;
 

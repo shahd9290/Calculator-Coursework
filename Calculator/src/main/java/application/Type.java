@@ -1,4 +1,4 @@
-package uk.ac.rhul.cs2800;
+package application;
 
 /**
  * An Enum used to hold different Entry types which can be used in the calculator stack.

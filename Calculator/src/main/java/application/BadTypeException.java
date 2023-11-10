@@ -1,4 +1,4 @@
-package uk.ac.rhul.cs2800;
+package application;
 
 /**
  * The Exception thrown when getting a value not used in an Entry instance.

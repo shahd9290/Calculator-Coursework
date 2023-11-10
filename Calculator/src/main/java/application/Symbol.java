@@ -1,4 +1,4 @@
-package uk.ac.rhul.cs2800;
+package application;
 
 /**
  * An Enum used to define the different possible symbols that can be recognised by the calculator
