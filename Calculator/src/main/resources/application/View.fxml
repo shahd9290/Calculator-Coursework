@@ -26,7 +26,7 @@
   </rowConstraints>
    <children>
       <TextField id="inputField" fx:id="inputField" prefHeight="26.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-      <TextField id="totalField" fx:id="totalField" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <TextField id="totalField" fx:id="totalField" editable="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Button id="calcButton" fx:id="calcButton" lineSpacing="2.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="164.0" text="Calculate" textFill="#3800b9" translateY="-6.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font name="System Bold" size="20.0" />
