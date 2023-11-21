@@ -18,4 +18,8 @@ public class OpStack {
     return stack.top().getSymbol();
   }
 
+  public Symbol pop() throws BadTypeException, EmptyStackException {
+    return stack.pop().getSymbol();
+  }
+
 }

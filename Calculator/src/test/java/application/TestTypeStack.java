@@ -101,6 +101,59 @@ class TestTypeStack {
     except = assertThrows(EmptyStackException.class, () -> num.top(),
         "Stack is empty, so there should be no value to view");
     assertEquals(except.getMessage(), Stack.EMPTY_TOP);
+  }
+  
+  // Test 7 - Check that pop() returns the correct value after being pushed.
+  // Similar fix to top(), by returning stack.top() with the correct getter
+  // Example: NumStack.pop() returns stack.pop().getValue()
+  @Test
+  void testStackPopOne() throws BadTypeException, EmptyStackException {
+    op.push(Symbol.DIVIDE);
+    str.push("Test");
+    num.push(14.0f);
+    
+    assertEquals(Symbol.DIVIDE, op.pop(), "Should return the second value pushed");
+    assertEquals("Test", str.pop(), "Should return the second value pushed");
+    assertEquals(14.0f, num.pop(), "Should return the second value pushed");
+    
+  }
+  // Test 8 - Make sure pop() returns the last value that was pushed.
+  // Didn't need to be fixed.
+  @Test
+  void testStackPopTwo() throws BadTypeException, EmptyStackException {
+    // First batch push
+    op.push(Symbol.MINUS);
+    str.push("Testing");
+    num.push(15.0f);
+    // Second batch push
+    op.push(Symbol.DIVIDE);
+    str.push("Test");
+    num.push(14.0f);
+    
+    assertEquals(Symbol.DIVIDE, op.pop(), "Should return the second value pushed");
+    assertEquals("Test", str.pop(), "Should return the second value pushed");
+    assertEquals(14.0f, num.pop(), "Should return the second value pushed");
+    
+    assertEquals(Symbol.MINUS, op.pop(), "Should return the first value pushed");
+    assertEquals("Testing", str.pop(), "Should return the first value pushed");
+    assertEquals(15.0f, num.pop(), "Should return the first value pushed");
+  }
+  
+  // Test 9 - Make sure that an exception is thrown when trying to pop an empty stack
+  // Didn't need to be fixed.
+  @Test
+  void testStackPopEmpty() throws BadTypeException, EmptyStackException{
+    EmptyStackException except;
 
+    except = assertThrows(EmptyStackException.class, () -> op.pop(),
+        "Stack is empty, so there should be no value to remove");
+    assertEquals(except.getMessage(), Stack.EMPTY_POP);
+    except = assertThrows(EmptyStackException.class, () -> str.pop(),
+        "Stack is empty, so there should be no value to remove");
+    assertEquals(except.getMessage(), Stack.EMPTY_POP);
+
+    except = assertThrows(EmptyStackException.class, () -> num.pop(),
+        "Stack is empty, so there should be no value to remove");
+    assertEquals(except.getMessage(), Stack.EMPTY_POP);
   }
 }

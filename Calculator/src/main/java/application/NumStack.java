@@ -19,4 +19,8 @@ public class NumStack {
     return stack.top().getValue();
   }
 
+  public float pop() throws BadTypeException, EmptyStackException {
+    return stack.pop().getValue();
+  }
+
 }

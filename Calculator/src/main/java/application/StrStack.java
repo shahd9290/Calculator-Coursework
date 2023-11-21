@@ -19,4 +19,8 @@ public class StrStack {
     return stack.top().getString();
   }
 
+  public String pop() throws BadTypeException, EmptyStackException {
+    return stack.pop().getString();
+  }
+
 }
