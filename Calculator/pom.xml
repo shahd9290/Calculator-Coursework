@@ -6,7 +6,7 @@
 	<artifactId>Calculator</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>Initial Code for Coursework Two</name>
+	<name>Coursework Two</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
