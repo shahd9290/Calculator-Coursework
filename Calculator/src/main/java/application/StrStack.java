@@ -1,11 +1,13 @@
 package application;
 
 /**
+ * A class used to create a Stack Data Structure for String using a previously defined Stack Class.
  * 
+ * @author Danyal Shah
  */
 public class StrStack {
-  
-  Stack stack = new Stack();
+
+  private Stack stack = new Stack();
 
   public int size() {
     return stack.size();

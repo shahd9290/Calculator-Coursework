@@ -1,11 +1,14 @@
 package application;
 
 /**
+ * A class used to create a Stack Data Structure for Operator Symbols using a previously defined
+ * Stack Class.
  * 
+ * @author Danyal Shah
  */
 public class OpStack {
-  Stack stack = new Stack();
-  
+  private Stack stack = new Stack();
+
   public int size() {
     return stack.size();
   }
