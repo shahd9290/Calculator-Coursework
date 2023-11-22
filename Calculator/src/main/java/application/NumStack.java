@@ -37,9 +37,9 @@ public class NumStack {
     return checkException(stack.pop());
   }
   
-  private float checkException(Entry strEntry) {
+  private float checkException(Entry numEntry) {
     try {
-      return strEntry.getValue();
+      return numEntry.getValue();
     }
     catch (BadTypeException badType) {
       // This shouldn't occur. 

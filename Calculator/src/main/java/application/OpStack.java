@@ -37,9 +37,9 @@ public class OpStack {
     return checkException(stack.pop());
   }
   
-  private Symbol checkException(Entry strEntry) {
+  private Symbol checkException(Entry opEntry) {
     try {
-      return strEntry.getSymbol();
+      return opEntry.getSymbol();
     }
     catch (BadTypeException badType) {
       // This shouldn't occur. 
