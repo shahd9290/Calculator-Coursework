@@ -17,12 +17,36 @@ public class StrStack {
     stack.push(new Entry(string));
   }
 
-  public String top() throws BadTypeException, EmptyStackException {
-    return stack.top().getString();
+  /**
+   * Reads the stack, and will return the value that was last inserted into the Stack.
+   * 
+   * @return The last value inserted into the stack.
+   * @throws EmptyStackException If trying to view an item in an empty stack.
+   */
+  public String top() throws EmptyStackException {
+    try {
+      return stack.top().getString();
+    } catch (BadTypeException badType) {
+      // This shouldn't occur. 
+      // The correct getter is called directly in the return line.
+      return null;
+    }
   }
 
-  public String pop() throws BadTypeException, EmptyStackException {
-    return stack.pop().getString();
+  /**
+   * Removes the last Entry from the stack, and returns it to the user.
+   * 
+   * @return The Entry previously added to the Stack.
+   * @throws EmptyStackException If trying to remove from an empty stack.
+   */
+  public String pop() throws EmptyStackException {
+    try {
+      return stack.pop().getString();
+    } catch (BadTypeException badType) {
+      // This shouldn't occur. 
+      // The correct getter is called directly in the return line.
+      return null;
+    }
   }
 
 }

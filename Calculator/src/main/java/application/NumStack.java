@@ -17,12 +17,35 @@ public class NumStack {
     stack.push(new Entry(num));
   }
 
-  public float top() throws BadTypeException, EmptyStackException {
-    return stack.top().getValue();
+  /**
+   * Reads the stack, and will return the value that was last inserted into the Stack.
+   * 
+   * @return The last value inserted into the stack.
+   * @throws EmptyStackException If trying to view an item in an empty stack.
+   */
+  public float top() throws EmptyStackException {
+    try {
+      return stack.top().getValue();
+    } catch (BadTypeException badType) {
+      // This shouldn't occur. 
+      // The correct getter is called directly in the return line.
+      return 0f;
+    }
   }
 
-  public float pop() throws BadTypeException, EmptyStackException {
-    return stack.pop().getValue();
+  /**
+   * Removes the last Entry from the stack, and returns it to the user.
+   * 
+   * @return The Entry previously added to the Stack.
+   * @throws EmptyStackException If trying to remove from an empty stack.
+   */
+  public float pop() throws EmptyStackException {
+    try {
+      return stack.pop().getValue();
+    } catch (BadTypeException badType) {
+      // This shouldn't occur. 
+      // The correct getter is called directly in the return line.
+      return 0f;
+    }
   }
-
 }

@@ -17,12 +17,36 @@ public class OpStack {
     stack.push(new Entry(symbol));
   }
 
-  public Symbol top() throws BadTypeException, EmptyStackException {
-    return stack.top().getSymbol();
+  /**
+   * Reads the stack, and will return the value that was last inserted into the Stack.
+   * 
+   * @return The last value inserted into the stack.
+   * @throws EmptyStackException If trying to view an item in an empty stack.
+   */
+  public Symbol top() throws EmptyStackException {
+    try {
+      return stack.top().getSymbol();
+    } catch (BadTypeException badType) {
+      // This shouldn't occur. 
+      // The correct getter is called directly in the return line.
+      return Symbol.INVALID;
+    }
   }
 
-  public Symbol pop() throws BadTypeException, EmptyStackException {
-    return stack.pop().getSymbol();
+  /**
+   * Removes the last Entry from the stack, and returns it to the user.
+   * 
+   * @return The Entry previously added to the Stack.
+   * @throws EmptyStackException If trying to remove from an empty stack.
+   */
+  public Symbol pop() throws EmptyStackException {
+    try {
+      return stack.pop().getSymbol();
+    } catch (BadTypeException badType) {
+      // This shouldn't occur. 
+      // The correct getter is called directly in the return line.
+      return Symbol.INVALID;
+    }
   }
 
 }
