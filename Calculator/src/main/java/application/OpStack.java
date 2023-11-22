@@ -24,13 +24,7 @@ public class OpStack {
    * @throws EmptyStackException If trying to view an item in an empty stack.
    */
   public Symbol top() throws EmptyStackException {
-    try {
-      return stack.top().getSymbol();
-    } catch (BadTypeException badType) {
-      // This shouldn't occur. 
-      // The correct getter is called directly in the return line.
-      return Symbol.INVALID;
-    }
+    return checkException(stack.top());
   }
 
   /**
@@ -40,9 +34,14 @@ public class OpStack {
    * @throws EmptyStackException If trying to remove from an empty stack.
    */
   public Symbol pop() throws EmptyStackException {
+    return checkException(stack.pop());
+  }
+  
+  private Symbol checkException(Entry strEntry) {
     try {
-      return stack.pop().getSymbol();
-    } catch (BadTypeException badType) {
+      return strEntry.getSymbol();
+    }
+    catch (BadTypeException badType) {
       // This shouldn't occur. 
       // The correct getter is called directly in the return line.
       return Symbol.INVALID;

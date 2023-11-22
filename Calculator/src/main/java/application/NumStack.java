@@ -24,13 +24,7 @@ public class NumStack {
    * @throws EmptyStackException If trying to view an item in an empty stack.
    */
   public float top() throws EmptyStackException {
-    try {
-      return stack.top().getValue();
-    } catch (BadTypeException badType) {
-      // This shouldn't occur. 
-      // The correct getter is called directly in the return line.
-      return 0f;
-    }
+    return checkException(stack.top());
   }
 
   /**
@@ -40,9 +34,14 @@ public class NumStack {
    * @throws EmptyStackException If trying to remove from an empty stack.
    */
   public float pop() throws EmptyStackException {
+    return checkException(stack.pop());
+  }
+  
+  private float checkException(Entry strEntry) {
     try {
-      return stack.pop().getValue();
-    } catch (BadTypeException badType) {
+      return strEntry.getValue();
+    }
+    catch (BadTypeException badType) {
       // This shouldn't occur. 
       // The correct getter is called directly in the return line.
       return 0f;

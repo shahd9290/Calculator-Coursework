@@ -24,13 +24,7 @@ public class StrStack {
    * @throws EmptyStackException If trying to view an item in an empty stack.
    */
   public String top() throws EmptyStackException {
-    try {
-      return stack.top().getString();
-    } catch (BadTypeException badType) {
-      // This shouldn't occur. 
-      // The correct getter is called directly in the return line.
-      return null;
-    }
+    return checkException(stack.top());
   }
 
   /**
@@ -40,9 +34,14 @@ public class StrStack {
    * @throws EmptyStackException If trying to remove from an empty stack.
    */
   public String pop() throws EmptyStackException {
+    return checkException(stack.pop());
+  }
+  
+  private String checkException(Entry strEntry) {
     try {
-      return stack.pop().getString();
-    } catch (BadTypeException badType) {
+      return strEntry.getString();
+    }
+    catch (BadTypeException badType) {
       // This shouldn't occur. 
       // The correct getter is called directly in the return line.
       return null;
