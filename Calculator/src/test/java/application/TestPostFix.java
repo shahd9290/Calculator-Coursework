@@ -24,7 +24,7 @@ class TestPostFix {
   // Test 2 - Check if correct value is returned from Addition.
   // Fixed by hard coding return value.
   @Test
-  void testAdditionOne() throws EmptyStackException, InvalidExpression {
+  void testAdditionOne() throws InvalidExpression {
     assertEquals(3, rpc.evaluate("1 2 +"));
     // Test 3 - Check the correct value is returned for different expression
     // Fixed by using a loop to read each integer in a string, and end when it hits the +.
@@ -34,7 +34,7 @@ class TestPostFix {
   // Test 4 - Check that extended expressions can be evaluated.
   // Fixed by refactoring method. Changed While condition for has Next() over NextInt().
   @Test
-  void testAdditionTwo() throws EmptyStackException, InvalidExpression {
+  void testAdditionTwo() throws InvalidExpression {
     assertEquals(12, rpc.evaluate("6 4 2 + +"));
     assertEquals(8, rpc.evaluate("1 5 2 + +"));
   }
@@ -42,7 +42,7 @@ class TestPostFix {
   // Test 5 - Test Complex Addition
   // Passed First Try.
   @Test
-  void testAdditionThree() throws EmptyStackException, InvalidExpression {
+  void testAdditionThree() throws InvalidExpression {
     assertEquals(25, rpc.evaluate("7 3 + 15 +"));
   }
 
@@ -51,7 +51,7 @@ class TestPostFix {
   // of the while loop after each calculation.
   // Without this it would've called another incorrect case.
   @Test
-  void testSubtractionOne() throws EmptyStackException, InvalidExpression {
+  void testSubtractionOne() throws InvalidExpression {
     assertEquals(2, rpc.evaluate("5 3 -"));
     assertEquals(12, rpc.evaluate("15 6 3 - -"));
 
@@ -59,39 +59,39 @@ class TestPostFix {
 
   // Test 7 - Check an expression can be evaluated with both + and -
   @Test
-  void testSubtractionTwo() throws EmptyStackException, InvalidExpression {
+  void testSubtractionTwo() throws InvalidExpression {
     assertEquals(15, rpc.evaluate("12 8 + 5 -"));
   }
 
   // Test 8 - Test Multiply
   @Test
-  void testMultiplyOne() throws EmptyStackException, InvalidExpression {
+  void testMultiplyOne() throws InvalidExpression {
     assertEquals(24, rpc.evaluate("8 3 *"));
     assertEquals(72, rpc.evaluate("4 2 9 * *"));
   }
 
   // Test 9 - Test Multiply, Addition and Subtraction
   @Test
-  void testMultiplyTwo() throws EmptyStackException, InvalidExpression {
+  void testMultiplyTwo() throws InvalidExpression {
     assertEquals(rpc.evaluate("12 5 7 2 - + *"), 120);
   }
 
   // Test 10 - Test Division
   @Test
-  void testDivisionOne() throws EmptyStackException, InvalidExpression {
+  void testDivisionOne() throws InvalidExpression {
     assertEquals(rpc.evaluate("15 3 / "), 5);
   }
 
   // Test 11 - Test all four operators
   @Test
-  void testDivisionTwo() throws EmptyStackException, InvalidExpression {
+  void testDivisionTwo() throws InvalidExpression {
     assertEquals(rpc.evaluate("25 4 8 10 5 / * + -"), 5);
   }
 
   // Test 12 - Test Division by Zero
   // Fixed by throwing InvalidExpression
   @Test
-  void testDivisionThree() throws EmptyStackException {
+  void testDivisionThree() {
     assertThrows(InvalidExpression.class, () -> rpc.evaluate("1 0 /"));
   }
 }
