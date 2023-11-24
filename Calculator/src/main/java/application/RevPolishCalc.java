@@ -12,7 +12,7 @@ public class RevPolishCalc {
 
   NumStack numStack = new NumStack();
 
-  public float evaluate(String string) throws EmptyStackException {
+  public float evaluate(String string) throws EmptyStackException, InvalidExpression {
     Scanner scan = new Scanner(string);
     while (scan.hasNext()) {
       if (scan.hasNextInt()) {
@@ -32,6 +32,9 @@ public class RevPolishCalc {
             numStack.push(arg1 * arg2);
             break;
           case "/":
+            if (arg2 == 0) {
+              throw new InvalidExpression("Cannot Divide By 0!");
+            }
             numStack.push(arg1 / arg2);
             break;
         }
