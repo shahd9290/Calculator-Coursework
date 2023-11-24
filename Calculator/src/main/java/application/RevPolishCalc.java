@@ -11,16 +11,24 @@ import java.util.Scanner;
 public class RevPolishCalc {
 
   NumStack numStack = new NumStack();
-  
+
   public float evaluate(String string) throws EmptyStackException {
     Scanner scan = new Scanner(string);
     while (scan.hasNext()) {
       if (scan.hasNextInt()) {
         numStack.push(scan.nextInt());
-      }
-      else {
-        scan.next();
-        numStack.push(numStack.pop() + numStack.pop());
+      } else {
+        float arg2 = numStack.pop();
+        float arg1 = numStack.pop();
+
+        switch (scan.next()) {
+          case "+":
+            numStack.push(arg1 + arg2);
+			break;
+          case "-":
+            numStack.push(arg1 - arg2);
+			break;
+        }
       }
     }
     return numStack.pop();

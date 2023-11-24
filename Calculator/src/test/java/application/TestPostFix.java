@@ -20,7 +20,7 @@ class TestPostFix {
     assertNotNull(new RevPolishCalc());
   }
 
-  // Test 2 - Check if correct value is returned.
+  // Test 2 - Check if correct value is returned from Addition.
   // Fixed by hard coding return value.
   @Test
   void testAdditionOne() throws EmptyStackException {
@@ -42,6 +42,23 @@ class TestPostFix {
   // Passed First Try.
   @Test
   void testAdditionThree() throws EmptyStackException {
-    assertEquals(rpc.evaluate("7 3 + 15 +"), 25);
+    assertEquals(25, rpc.evaluate("7 3 + 15 +"));
+  }
+  
+  // Test 6 - Check if correct value is returned from Subtraction.
+  // Fixed with a switch/case for the operator + calling the next iteration
+  // of the while loop after each calculation. 
+  // Without this it would've called another incorrect case.
+  @Test
+  void testSubtractionOne() throws EmptyStackException {
+    assertEquals(2, rpc.evaluate("5 3 -"));
+    assertEquals(12, rpc.evaluate("15 6 3 - -"));
+
+  }
+  
+  // Test 7 - Check an expression can be evaluated with both + and - 
+  @Test
+  void testSubtractionTwo() throws EmptyStackException {
+    assertEquals (15, rpc.evaluate("12 8 + 5 -"));
   }
 }
