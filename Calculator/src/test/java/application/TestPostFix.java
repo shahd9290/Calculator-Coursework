@@ -92,6 +92,41 @@ class TestPostFix {
   // Fixed by throwing InvalidExpression
   @Test
   void testDivisionThree() {
-    assertThrows(InvalidExpression.class, () -> rpc.evaluate("1 0 /"));
+    InvalidExpression except = assertThrows(InvalidExpression.class, () -> rpc.evaluate("1 0 /"));
+    assertEquals(except.getMessage(), RevPolishCalc.DIVZERO_MSG);
+  }
+
+  // Test 13 - Test Invalid Expressions (No operators)
+  // Fixed by using a boolean variable to determine whether a calculation has taken place.
+  // If not, then an exception is thrown at the end when trying to return an answer.
+  @Test
+  void testInvalidOne() throws InvalidExpression {
+    InvalidExpression except = assertThrows(InvalidExpression.class, () -> rpc.evaluate("1 2 3"));
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
+  }
+
+  // Test 14 - Test Invalid Expressions (Too Many Operators)
+  // Fixed by throwing an InvalidExpression when an EmptyStackException occurs.
+  @Test
+  void testInvalidTwo() throws InvalidExpression {
+    InvalidExpression except = assertThrows(InvalidExpression.class, () -> rpc.evaluate("1 2 + +"));
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
+  }
+
+  // Test 15 - Test Invalid Expressions (Only Operators)
+  @Test
+  void testInvalidThree() throws InvalidExpression {
+    InvalidExpression except = assertThrows(InvalidExpression.class, () -> rpc.evaluate("+ + +"));
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
+  }
+  
+  // Test 16 - Test Invalid Expressions (Unknown Symbol)
+  // Throws an EmptyStackException and gets handled immediately. No fix required.
+  @Test
+  void testInvalidFour() throws InvalidExpression {
+    InvalidExpression except = assertThrows(InvalidExpression.class, () -> rpc.evaluate("1 2 + ("));
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
+    InvalidExpression except2 = assertThrows(InvalidExpression.class, () -> rpc.evaluate("1 2 ("));
+    assertEquals(except2.getMessage(), RevPolishCalc.INVALID_MSG);
   }
 }
