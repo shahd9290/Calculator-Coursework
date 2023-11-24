@@ -24,12 +24,25 @@ public class StandardCalc {
   public float evaluate(String string) throws InvalidExpression {
     String expression = "";
     try (Scanner scan = new Scanner(string)) {
+      // Read each character in the string.
       while (scan.hasNext()) {
         String arg = scan.next();
-        if (arg.equals("+")) {
-          opStack.push(Symbol.PLUS);
-        } else {
-          expression = expression + arg + " ";
+        // If an operator: push symbol to stack.
+        switch(arg) {
+          case "+":
+            opStack.push(Symbol.PLUS);
+            break;
+          case "-":
+            opStack.push(Symbol.MINUS);
+            break;
+          case "*":
+            opStack.push(Symbol.TIME);
+            break;
+          case "/":
+            opStack.push(Symbol.DIVIDE);
+            break;
+          default:
+            expression = expression + arg + " ";
         }
       }
       while (opStack.size() != 0) {

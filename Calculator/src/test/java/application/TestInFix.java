@@ -21,9 +21,19 @@ class TestInFix {
   }
 
   // Test 2 - Test Basic Addition
+  // Fixed by implementing basic Shunting Yard algorithm
   @Test
-  void testAdditionOne() throws InvalidExpression {
+  void testArithmeticOne() throws InvalidExpression {
     assertEquals(8, sc.evaluate("5 + 3"));
     assertEquals(6, sc.evaluate("3 + 3"));
+  }
+  
+  // Test 3 - Test Other Operators
+  // Fixed by implementing Switch/Case block.
+  void testArithmeticTwo() throws InvalidExpression {
+    assertEquals(10, sc.evaluate("12 - 2"));
+    assertEquals(10, sc.evaluate("5 * 2"));
+    assertEquals(10, sc.evaluate("20 / 2"));
+
   }
 }
