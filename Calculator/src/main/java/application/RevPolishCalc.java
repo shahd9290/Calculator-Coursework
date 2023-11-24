@@ -30,7 +30,7 @@ public class RevPolishCalc {
         if (scan.hasNextFloat()) {
           float num = scan.nextFloat();
           // Detect if number is too large for calculation.
-          if (num >= Float.MAX_VALUE) {
+          if (num >= Float.MAX_VALUE || num <= Float.MIN_VALUE) {
             throw new InvalidExpression(OVERFLOW_MSG);
           }
           numStack.push(num);
