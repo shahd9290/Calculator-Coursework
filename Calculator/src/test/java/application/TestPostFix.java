@@ -2,6 +2,7 @@ package application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -69,9 +70,21 @@ class TestPostFix {
     assertEquals(72, rpc.evaluate("4 2 9 * *"));
   }
   
-  // Test 9 - Test Multiply Addition and Subtraction
+  // Test 9 - Test Multiply, Addition and Subtraction
   @Test
   void testMultiplyTwo() throws EmptyStackException {
     assertEquals(rpc.evaluate("12 5 7 2 - + *"), 120);
+  }
+  
+  // Test 10 - Test Division
+  @Test
+  void testDivisionOne() throws EmptyStackException {
+    assertEquals(rpc.evaluate("15 3 / "), 5);
+  }
+  
+  // Test 11 - Test all four operators
+  @Test
+  void DivisionTwo() throws EmptyStackException {
+    assertEquals(rpc.evaluate("25 4 8 10 5 / * + -"), 5);
   }
 }

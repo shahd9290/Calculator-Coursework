@@ -30,6 +30,10 @@ public class RevPolishCalc {
 			break;
           case "*":
             numStack.push(arg1 * arg2);
+            break;
+          case "/":
+            numStack.push(arg1 / arg2);
+            break;
         }
       }
     }
