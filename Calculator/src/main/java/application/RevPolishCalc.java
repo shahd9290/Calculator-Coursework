@@ -23,9 +23,8 @@ public class RevPolishCalc {
    * @throws InvalidExpression When an expression is entered incorrectly and cannot be performed.
    */
   public float evaluate(String string) throws InvalidExpression {
-    Scanner scan = new Scanner(string);
-    Boolean answered = false;
-    try {
+    try (Scanner scan = new Scanner(string);) {
+      Boolean answered = false;
       while (scan.hasNext()) {
         if (scan.hasNextInt()) {
           // Push all valid numbers to the stack.
