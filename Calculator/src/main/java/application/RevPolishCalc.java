@@ -12,17 +12,18 @@ public class RevPolishCalc {
 
   NumStack numStack = new NumStack();
   
-  public float evaluate(String string) {
+  public float evaluate(String string) throws EmptyStackException {
     Scanner scan = new Scanner(string);
-    while (scan.hasNextInt()) {
-      numStack.push(scan.nextInt());
+    while (scan.hasNext()) {
+      if (scan.hasNextInt()) {
+        numStack.push(scan.nextInt());
+      }
+      else {
+        scan.next();
+        numStack.push(numStack.pop() + numStack.pop());
+      }
     }
-    scan.next();
-    try {
-      return numStack.pop() + numStack.pop();
-    } catch (EmptyStackException e) {
-      return 0;
-    }
+    return numStack.pop();
   }
 
 }
