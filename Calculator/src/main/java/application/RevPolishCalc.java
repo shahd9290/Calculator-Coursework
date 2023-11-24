@@ -39,31 +39,7 @@ public class RevPolishCalc {
           float arg2 = numStack.pop();
           float arg1 = numStack.pop();
 
-          switch (scan.next()) {
-            case "+":
-              numStack.push(arg1 + arg2);
-              break;
-            case "-":
-              numStack.push(arg1 - arg2);
-              break;
-            case "*":
-              numStack.push(arg1 * arg2);
-              break;
-            case "/":
-              // Attempting to divide by zero.
-              if (arg2 == 0) {
-                throw new InvalidExpression(DIVZERO_MSG);
-              }
-              numStack.push(arg1 / arg2);
-              break;
-            default:
-              // This will only occur when neither of the four aforementioned symbols are used as an
-              // operator.
-              // The stack remains empty and an EmptyStackException is thrown in the return
-              // statement.
-              // This will throw a new InvalidExpression.
-              break;
-          }
+          calculate(scan.next(), arg1, arg2);
           answered = true;
         }
       }
@@ -76,6 +52,34 @@ public class RevPolishCalc {
     } catch (EmptyStackException empty) {
       // For a stack to be empty it means that there was an error in the input string.
       throw new InvalidExpression(INVALID_MSG);
+    }
+  }
+  
+  private void calculate(String op, float arg1, float arg2) throws InvalidExpression {
+    switch (op) {
+      case "+":
+        numStack.push(arg1 + arg2);
+        break;
+      case "-":
+        numStack.push(arg1 - arg2);
+        break;
+      case "*":
+        numStack.push(arg1 * arg2);
+        break;
+      case "/":
+        // Attempting to divide by zero.
+        if (arg2 == 0) {
+          throw new InvalidExpression(DIVZERO_MSG);
+        }
+        numStack.push(arg1 / arg2);
+        break;
+      default:
+        // This will only occur when neither of the four aforementioned symbols are used as an
+        // operator.
+        // The stack remains empty and an EmptyStackException is thrown in the return
+        // statement.
+        // This will throw a new InvalidExpression.
+        break;
     }
   }
 
