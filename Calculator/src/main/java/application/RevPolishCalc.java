@@ -13,6 +13,7 @@ public class RevPolishCalc {
   public static final String DIVZERO_MSG = "Cannot Divide By Zero!";
   public static final String INVALID_MSG = "Expression is invalid. "
       + "Ensure two numbers are followed by a valid operator for it to be valid.";
+  public static final String OVERFLOW_MSG = "Answer is too big!";
   private NumStack numStack = new NumStack();
 
   /**
@@ -26,9 +27,13 @@ public class RevPolishCalc {
     try (Scanner scan = new Scanner(string);) {
       Boolean answered = false;
       while (scan.hasNext()) {
-        if (scan.hasNextInt()) {
-          // Push all valid numbers to the stack.
-          numStack.push(scan.nextInt());
+        if (scan.hasNextFloat()) {
+          float num = scan.nextFloat();
+          // Detect if number is too large for calculation.
+          if (num >= Float.MAX_VALUE) {
+            throw new InvalidExpression(OVERFLOW_MSG);
+          }
+          numStack.push(num);
         } else {
           // Pop previous two numbers for the next operator.
           float arg2 = numStack.pop();
