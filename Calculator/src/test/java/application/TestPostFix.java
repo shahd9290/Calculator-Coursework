@@ -149,4 +149,10 @@ class TestPostFix {
     InvalidExpression except = assertThrows(InvalidExpression.class, () -> rpc.evaluate(expression + " 1 +"));
     assertEquals(RevPolishCalc.OVERFLOW_MSG, except.getMessage());
   }
+  
+  // Test 19 - Test Single Value Input
+  @Test
+  void testSingle() throws InvalidExpression {
+    assertEquals(1, rpc.evaluate("1"));
+  }
 }
