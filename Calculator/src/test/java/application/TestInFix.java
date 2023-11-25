@@ -2,6 +2,7 @@ package application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -55,5 +56,18 @@ class TestInFix {
   void testBrackets() throws InvalidExpression {
     assertEquals(13, sc.evaluate("3 + ( 5 * 2 )"));
     assertEquals(63, sc.evaluate("( 5 * ( 6 + 7 ) ) - 2"));
+  }
+  
+  // Test 6 - Test Invalids
+  @Test
+  void testInvalids() throws InvalidExpression {
+    InvalidExpression except = assertThrows(InvalidExpression.class, () -> sc.evaluate("5 + + 2"));
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
+    
+    InvalidExpression except2 = assertThrows(InvalidExpression.class, () -> sc.evaluate("1 / 0"));
+    assertEquals(except2.getMessage(), RevPolishCalc.DIVZERO_MSG);
+    
+    InvalidExpression except3 = assertThrows(InvalidExpression.class, () -> sc.evaluate("5 2"));
+    assertEquals(except3.getMessage(), RevPolishCalc.INVALID_MSG);
   }
 }

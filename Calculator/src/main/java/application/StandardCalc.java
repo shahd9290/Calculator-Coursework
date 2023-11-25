@@ -12,7 +12,7 @@ public class StandardCalc {
 
   RevPolishCalc rpc = new RevPolishCalc();
   OpStack opStack = new OpStack();
-  String output = "";
+  String output;
 
   /**
    * Performs a calculation on a provided string using the Standard Infix method.
@@ -23,11 +23,13 @@ public class StandardCalc {
    */
 
   public float evaluate(String string) throws InvalidExpression {
+    output = "";
     try (Scanner scan = new Scanner(string)) {
       // Read each character in the string.
       while (scan.hasNext()) {
         String arg = scan.next();
         // If an operator: push symbol to stack.
+        // Operators ordered by priority: * -> / -> + -> -
         switch (arg) {
           case "*":
             isPriority(Symbol.TIME);
@@ -51,8 +53,10 @@ public class StandardCalc {
           case "(":
             opStack.push(Symbol.LEFT_BRACKET);
             break;
+
           case ")":
             Symbol sym;
+            // Pop operators until the symbol popped is a left bracket.
             while ((sym = opStack.pop()) != Symbol.LEFT_BRACKET) {
               addToOutput(sym);
             }
@@ -61,16 +65,26 @@ public class StandardCalc {
             addToOutput(arg);
         }
       }
+      // Pop all operators from the opStack
+      if (opStack.size() == 0) {
+        throw new EmptyStackException(RevPolishCalc.INVALID_MSG);
+      }
       while (opStack.size() != 0) {
         addToOutput(opStack.pop());
       }
+      return rpc.evaluate(output);
+
     } catch (EmptyStackException e) {
-      // TODO Auto-generated catch block
-      return 0;
+      throw new InvalidExpression(RevPolishCalc.INVALID_MSG);
     }
-    return rpc.evaluate(output);
   }
 
+  /**
+   * Used to identify the whether the current symbol is a priority based on its ordinal value.
+   * 
+   * @param sym The symbol to compare with what's at the top of the stack.
+   * @throws EmptyStackException If the stack is empty.
+   */
   private void isPriority(Symbol sym) throws EmptyStackException {
     if (opStack.size() > 0 && sym.ordinal() > opStack.top().ordinal()) {
       addToOutput(opStack.pop());
