@@ -30,10 +30,20 @@ class TestInFix {
   
   // Test 3 - Test Other Operators
   // Fixed by implementing Switch/Case block.
+  @Test
   void testArithmeticTwo() throws InvalidExpression {
     assertEquals(10, sc.evaluate("12 - 2"));
     assertEquals(10, sc.evaluate("5 * 2"));
     assertEquals(10, sc.evaluate("20 / 2"));
+  }
+
+  // Test 4 - Test Precedence (* > / > + > -)
+  @Test
+void testPrecedence() throws InvalidExpression {
+    assertEquals(10, sc.evaluate("4 * 2 + 2"));
+    assertEquals(8, sc.evaluate("4 + 2 * 2"));
+    assertEquals(5, sc.evaluate("18 * 2 / 4 + 1 - 5"));
+    assertEquals(17, sc.evaluate("18 + 2 - 15 / 1 * 5"));
 
   }
 }

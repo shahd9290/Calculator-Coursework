@@ -12,6 +12,7 @@ public class StandardCalc {
 
   RevPolishCalc rpc = new RevPolishCalc();
   OpStack opStack = new OpStack();
+  String output = "";
 
   /**
    * Performs a calculation on a provided string using the Standard Infix method.
@@ -22,37 +23,57 @@ public class StandardCalc {
    */
 
   public float evaluate(String string) throws InvalidExpression {
-    String expression = "";
     try (Scanner scan = new Scanner(string)) {
       // Read each character in the string.
       while (scan.hasNext()) {
         String arg = scan.next();
         // If an operator: push symbol to stack.
-        switch(arg) {
-          case "+":
-            opStack.push(Symbol.PLUS);
-            break;
-          case "-":
-            opStack.push(Symbol.MINUS);
-            break;
+        switch (arg) {
           case "*":
+            isPriority(Symbol.TIME);
             opStack.push(Symbol.TIME);
             break;
+
           case "/":
+            isPriority(Symbol.DIVIDE);
             opStack.push(Symbol.DIVIDE);
             break;
+
+          case "+":
+            isPriority(Symbol.PLUS);
+            opStack.push(Symbol.PLUS);
+            break;
+
+          case "-": // Least priority so don't need to check.
+            opStack.push(Symbol.MINUS);
+            break;
+
           default:
-            expression = expression + arg + " ";
+            addToOutput(arg);
         }
       }
       while (opStack.size() != 0) {
-        expression = expression + opStack.pop();
+        addToOutput(opStack.pop());
       }
     } catch (EmptyStackException e) {
       // TODO Auto-generated catch block
       return 0;
     }
-    return rpc.evaluate(expression);
+    return rpc.evaluate(output);
+  }
+
+  private void isPriority(Symbol sym) throws EmptyStackException {
+    if (opStack.size() > 0 && sym.ordinal() > opStack.top().ordinal()) {
+      addToOutput(opStack.pop());
+    }
+  }
+
+  private void addToOutput(String added) {
+    output = output + added + " ";
+  }
+
+  private void addToOutput(Symbol added) {
+    addToOutput(added.toString());
   }
 
 }
