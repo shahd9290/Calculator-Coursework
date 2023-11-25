@@ -24,6 +24,9 @@ public class RevPolishCalc {
    * @throws InvalidExpression When an expression is entered incorrectly and cannot be performed.
    */
   public float evaluate(String string) throws InvalidExpression {
+    if (string.length() == 1) {
+      return Float.parseFloat(string);
+    }
     try (Scanner scan = new Scanner(string);) {
       Boolean answered = false;
       while (scan.hasNext()) {
@@ -54,7 +57,7 @@ public class RevPolishCalc {
       throw new InvalidExpression(INVALID_MSG);
     }
   }
-  
+
   private void calculate(String op, float arg1, float arg2) throws InvalidExpression {
     switch (op) {
       case "+":
