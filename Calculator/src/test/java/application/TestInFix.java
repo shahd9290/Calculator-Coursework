@@ -56,6 +56,9 @@ class TestInFix {
   void testBrackets() throws InvalidExpression {
     assertEquals(13, sc.evaluate("3 + ( 5 * 2 )"));
     assertEquals(63, sc.evaluate("( 5 * ( 6 + 7 ) ) - 2"));
+    assertEquals(60, sc.evaluate("( 2 + 4 ) * ( 3 + 7 )"));
+    assertEquals(70, sc.evaluate("( 2 + ( 25 / 5 ) ) * ( 3 + ( 3 + 4 ) )"));
+
   }
   
   // Test 6 - Test Invalids
