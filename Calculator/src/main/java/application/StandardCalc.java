@@ -48,6 +48,15 @@ public class StandardCalc {
             opStack.push(Symbol.MINUS);
             break;
 
+          case "(":
+            opStack.push(Symbol.LEFT_BRACKET);
+            break;
+          case ")":
+            Symbol sym;
+            while ((sym = opStack.pop()) != Symbol.LEFT_BRACKET) {
+              addToOutput(sym);
+            }
+            break;
           default:
             addToOutput(arg);
         }

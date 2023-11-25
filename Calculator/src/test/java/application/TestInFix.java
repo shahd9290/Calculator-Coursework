@@ -27,7 +27,7 @@ class TestInFix {
     assertEquals(8, sc.evaluate("5 + 3"));
     assertEquals(6, sc.evaluate("3 + 3"));
   }
-  
+
   // Test 3 - Test Other Operators
   // Fixed by implementing Switch/Case block.
   @Test
@@ -38,12 +38,22 @@ class TestInFix {
   }
 
   // Test 4 - Test Precedence (* > / > + > -)
+  // Fixed by checking priority via enum ordinals & popping accordingly.
   @Test
-void testPrecedence() throws InvalidExpression {
+  void testPrecedence() throws InvalidExpression {
     assertEquals(10, sc.evaluate("4 * 2 + 2"));
     assertEquals(8, sc.evaluate("4 + 2 * 2"));
     assertEquals(5, sc.evaluate("18 * 2 / 4 + 1 - 5"));
     assertEquals(17, sc.evaluate("18 + 2 - 15 / 1 * 5"));
 
+  }
+
+  // Test 5 - Test Brackets
+  // Fixed by added pushing for left bracket, and popping until last item popped is left bracket
+  // when the right bracket is read.
+  @Test
+  void testBrackets() throws InvalidExpression {
+    assertEquals(13, sc.evaluate("3 + ( 5 * 2 )"));
+    assertEquals(63, sc.evaluate("( 5 * ( 6 + 7 ) ) - 2"));
   }
 }
