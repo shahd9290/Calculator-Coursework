@@ -10,9 +10,9 @@ import java.util.Scanner;
  */
 public class StandardCalc {
 
-  RevPolishCalc rpc = new RevPolishCalc();
-  OpStack opStack = new OpStack();
-  String output;
+  private RevPolishCalc rpc = new RevPolishCalc();
+  private OpStack opStack = new OpStack();
+  private String output;
 
   /**
    * Performs a calculation on a provided string using the Standard Infix method.
