@@ -7,7 +7,7 @@ package application;
  * @author Danyal Shah
  */
 public enum Symbol {
-  LEFT_BRACKET("("), RIGHT_BRACKET(")"), TIME("*"), DIVIDE("/"), PLUS("+"), MINUS("-"), INVALID(
+  TIME("*"), DIVIDE("/"), PLUS("+"), MINUS("-"), LEFT_BRACKET("("), RIGHT_BRACKET(")"), INVALID(
       "!");
 
   private String symbol;
