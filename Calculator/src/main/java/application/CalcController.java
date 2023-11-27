@@ -7,10 +7,23 @@ package application;
 public class CalcController {
   private CalcModel myModel;
   private ViewInterface myView;
+  private boolean isInFix;
 
-  private void handleCalculation() {}
+  private void handleCalculation() {
+    
+  }
 
-  private void handleTypeChange() {}
+  private void handleTypeChange(OpType op) {
+    if (op == OpType.STANDARD) {
+      isInFix = true;
+    }
+    isInFix = false;
+  }
 
-  CalcController(CalcModel model, ViewInterface view) {}
+  CalcController(CalcModel model, ViewInterface view) {
+    view.addCalculateObserver(this::handleCalculation);
+    view.addTypeObserver(this::handleTypeChange);
+  }
+
+  CalcController() {}
 }
