@@ -24,6 +24,10 @@ public class StandardCalc {
 
   public float evaluate(String string) throws InvalidExpression {
     output = "";
+    // If input is only one number.
+    if (string.length() == 1) {
+      return Float.parseFloat(string);
+    }
     try (Scanner scan = new Scanner(string)) {
       // Read each character in the string.
       while (scan.hasNext()) {

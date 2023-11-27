@@ -73,4 +73,10 @@ class TestInFix {
     InvalidExpression except3 = assertThrows(InvalidExpression.class, () -> sc.evaluate("5 2"));
     assertEquals(except3.getMessage(), RevPolishCalc.INVALID_MSG);
   }
+  
+  // Test 7 - Test Single Numbers
+  @Test
+  void testSingle() throws InvalidExpression {
+    assertEquals(1, sc.evaluate("1"));
+  }
 }
