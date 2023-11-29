@@ -50,4 +50,12 @@ class TestController {
     mock.startView();
     assertEquals("3.0", mock.getAnswer());
   }
+  
+  @Test
+  void testEvaluateFour() {
+    mock.typeChange.accept(OpType.STANDARD);
+    mock.setExpression("( 2 + ( 25 / 5 ) ) * ( 3 + ( 3 + 4 ) )");
+    mock.startView();
+    assertEquals("70.0", mock.getAnswer());
+  }
 }
