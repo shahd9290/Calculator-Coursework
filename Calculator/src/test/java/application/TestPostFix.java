@@ -153,6 +153,7 @@ class TestPostFix {
   // Test 19 - Test Single Value Input
   @Test
   void testSingle() throws InvalidExpression {
+    assertEquals(1.0, rpc.evaluate("1.0"));
     assertEquals(1, rpc.evaluate("1"));
   }
 }
