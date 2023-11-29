@@ -71,7 +71,7 @@ public class CalcView extends Application implements ViewInterface {
     Scene scene = new Scene(page);
     scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
     primaryStage.setScene(scene);
-    primaryStage.setTitle("MVC/Observer/fxml");
+    primaryStage.setTitle("Calculator");
     primaryStage.show();
   }
 

@@ -13,17 +13,13 @@ public class CalcController {
     try {
       Float result = myModel.evaluate(myView.getExpression(), isInFix);
       myView.setAnswer(String.valueOf(result));
-    }
-    catch(InvalidExpression invalid) {
+    } catch (InvalidExpression invalid) {
       myView.setAnswer(invalid.getMessage());
     }
   }
 
   private void handleTypeChange(OpType op) {
-    if (op == OpType.STANDARD) {
-      isInFix = true;
-    }
-    isInFix = false;
+    isInFix = (op == OpType.STANDARD);
   }
 
   CalcController(CalcModel model, ViewInterface view) {
