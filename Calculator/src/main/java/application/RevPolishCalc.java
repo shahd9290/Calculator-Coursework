@@ -24,14 +24,12 @@ public class RevPolishCalc {
    * @throws InvalidExpression When an expression is entered incorrectly and cannot be performed.
    */
   public float evaluate(String string) throws InvalidExpression {
-    if (string.length() == 1) {
-      return Float.parseFloat(string);
-    }
     try (Scanner scan = new Scanner(string);) {
       Boolean answered = false;
       while (scan.hasNext()) {
         if (scan.hasNextFloat()) {
           float num = scan.nextFloat();
+          
           // Detect if number is too large for calculation.
           if (num >= Float.MAX_VALUE) {
             throw new InvalidExpression(OVERFLOW_MSG);
@@ -46,7 +44,7 @@ public class RevPolishCalc {
           answered = true;
         }
       }
-      if (!answered) {
+      if (!answered && numStack.size() > 1) {
         // If the boolean is false, it means no calculation took place (likely no operators)
         // It's an invalid expression as a result.
         throw new InvalidExpression(INVALID_MSG);
