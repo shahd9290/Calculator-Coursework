@@ -1,17 +1,53 @@
 package application;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TestController {
 
+  CalcModel model;
+  MockView mock;
+  CalcController testController;
+
+  @BeforeEach
+  void createMock() {
+    model = new CalcModel();
+    mock = new MockView();
+    testController = new CalcController(model, mock);
+  }
+
   @Test
   void testController() {
-    CalcModel model = new CalcModel();
-    MockView mock = new MockView();
-    CalcController testController = new CalcController(model, mock);
     assertNotNull(mock.handleCalculate);
     assertNotNull(mock.typeChange);
   }
 
+  @Test
+  void testEvaluateOne() {
+    String exp = String.valueOf(5.0);
+    mock.setExpression(exp);
+    mock.startView();
+    assertEquals(exp, mock.getAnswer());
+  }
+  
+  @Test
+  void testEvaluateTwo() {
+    mock.setExpression("1 2 +");
+    mock.startView();
+    assertEquals("3.0", mock.getAnswer());
+    
+    mock.setExpression("6 8 2 / +");
+    mock.startView();
+    assertEquals("10.0", mock.getAnswer());
+  }
+
+  @Test
+  void testEvaluateThree() {
+    mock.typeChange.accept(OpType.STANDARD);
+    mock.setExpression("1 + 2");
+    mock.startView();
+    assertEquals("3.0", mock.getAnswer());
+  }
 }

@@ -5,6 +5,8 @@ import java.util.function.Consumer;
 public class MockView implements ViewInterface {
   public Runnable handleCalculate = null;
   public Consumer<OpType> typeChange = null;
+  private String answer;
+  private String expression;
 
   @Override
   public void addCalculateObserver(Runnable f) { //
@@ -18,20 +20,25 @@ public class MockView implements ViewInterface {
 
   @Override
   public String getExpression() {
-    // TODO Auto-generated method stub
-    return null;
+    return expression;
   }
 
   @Override
   public void setAnswer(String a) {
-    // TODO Auto-generated method stub
-    
+    answer = a;
+  }
+  
+  public void setExpression(String a) {
+    expression = a;
+  }
+
+  public String getAnswer() {
+    return answer;
   }
 
   @Override
   public void startView() {
-    // TODO Auto-generated method stub
-    
+    handleCalculate.run();
   }
 
 }
