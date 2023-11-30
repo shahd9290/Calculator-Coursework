@@ -11,8 +11,7 @@ import java.util.Scanner;
 public class RevPolishCalc {
 
   public static final String DIVZERO_MSG = "Cannot Divide By Zero!";
-  public static final String INVALID_MSG = "Expression is invalid. "
-      + "Ensure two numbers are followed by a valid operator for it to be valid.";
+  public static final String INVALID_MSG = "Invalid Expression! Perhaps in the wrong format?";
   public static final String OVERFLOW_MSG = "Answer is too big!";
   private NumStack numStack = new NumStack();
 

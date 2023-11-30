@@ -85,15 +85,15 @@ class TestInFix {
   void testRevPolishInput() throws InvalidExpression{
     InvalidExpression except;
     except = assertThrows(InvalidExpression.class, () -> sc.evaluate("1 2 +"));
-    assertEquals(except.getMessage(), StandardCalc.INVALID_MSG);
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
     
     except = assertThrows(InvalidExpression.class, () -> sc.evaluate("1 2 -"));
-    assertEquals(except.getMessage(), StandardCalc.INVALID_MSG);
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
     
     except = assertThrows(InvalidExpression.class, () -> sc.evaluate("1 2 *"));
-    assertEquals(except.getMessage(), StandardCalc.INVALID_MSG);
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
     
     except = assertThrows(InvalidExpression.class, () -> sc.evaluate("1 2 /"));
-    assertEquals(except.getMessage(), StandardCalc.INVALID_MSG);
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
   }
 }
