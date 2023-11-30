@@ -24,10 +24,6 @@ public class StandardCalc {
 
   public float evaluate(String string) throws InvalidExpression {
     output = "";
-    // If input is only one number.
-    if (string.length() == 1) {
-      return Float.parseFloat(string);
-    }
     try (Scanner scan = new Scanner(string)) {
       // Read each character in the string.
       while (scan.hasNext()) {
@@ -70,7 +66,7 @@ public class StandardCalc {
         }
       }
       // Pop all operators from the opStack
-      if (opStack.size() == 0) {
+      if (opStack.size() == 0 && !output.equals(string + " ")) {
         throw new EmptyStackException(RevPolishCalc.INVALID_MSG);
       }
       while (opStack.size() != 0) {
