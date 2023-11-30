@@ -58,4 +58,24 @@ class TestController {
     mock.startView();
     assertEquals("70.0", mock.getAnswer());
   }
+  
+  @Test
+  void testEvaluateFive() {
+    mock.typeChange.accept(OpType.STANDARD);
+    mock.setExpression("2 + 5");
+    mock.startView();
+    assertEquals("7.0", mock.getAnswer());
+    
+    mock.typeChange.accept(OpType.REV_POLISH);
+    mock.setExpression("5 7 +");
+    mock.startView();
+    assertEquals("12.0", mock.getAnswer());
+  }
+  
+  @Test
+  void testEvaluateSix() {
+    mock.setExpression("2 6 + +");
+    mock.startView();
+    assertEquals(RevPolishCalc.INVALID_MSG, mock.getAnswer());
+  }
 }

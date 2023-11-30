@@ -28,6 +28,4 @@ public class CalcController {
     view.addCalculateObserver(this::handleCalculation);
     view.addTypeObserver(this::handleTypeChange);
   }
-
-  CalcController() {}
 }
