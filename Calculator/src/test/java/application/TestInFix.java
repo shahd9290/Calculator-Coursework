@@ -79,4 +79,21 @@ class TestInFix {
   void testSingle() throws InvalidExpression {
     assertEquals(1, sc.evaluate("1"));
   }
+  
+  // Test 8 - Test Rev Polish Input
+  @Test
+  void testRevPolishInput() throws InvalidExpression{
+    InvalidExpression except;
+    except = assertThrows(InvalidExpression.class, () -> sc.evaluate("1 2 +"));
+    assertEquals(except.getMessage(), StandardCalc.INVALID_MSG);
+    
+    except = assertThrows(InvalidExpression.class, () -> sc.evaluate("1 2 -"));
+    assertEquals(except.getMessage(), StandardCalc.INVALID_MSG);
+    
+    except = assertThrows(InvalidExpression.class, () -> sc.evaluate("1 2 *"));
+    assertEquals(except.getMessage(), StandardCalc.INVALID_MSG);
+    
+    except = assertThrows(InvalidExpression.class, () -> sc.evaluate("1 2 /"));
+    assertEquals(except.getMessage(), StandardCalc.INVALID_MSG);
+  }
 }

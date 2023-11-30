@@ -13,7 +13,8 @@ public class StandardCalc {
   private RevPolishCalc rpc = new RevPolishCalc();
   private OpStack opStack = new OpStack();
   private String output;
-
+  public static final String INVALID_MSG = "Expression is invalid. "
+      + "Ensure two numbers have a valid operator in between for it to be valid.";
   /**
    * Performs a calculation on a provided string using the Standard Infix method.
    * 
@@ -23,6 +24,7 @@ public class StandardCalc {
    */
 
   public float evaluate(String string) throws InvalidExpression {
+    checkValid(string);
     output = "";
     try (Scanner scan = new Scanner(string)) {
       // Read each character in the string.
@@ -67,7 +69,7 @@ public class StandardCalc {
       }
       // Pop all operators from the opStack
       if (opStack.size() == 0 && !output.equals(string + " ")) {
-        throw new EmptyStackException(RevPolishCalc.INVALID_MSG);
+        throw new EmptyStackException(INVALID_MSG);
       }
       while (opStack.size() != 0) {
         addToOutput(opStack.pop());
@@ -75,7 +77,7 @@ public class StandardCalc {
       return rpc.evaluate(output);
 
     } catch (EmptyStackException e) {
-      throw new InvalidExpression(RevPolishCalc.INVALID_MSG);
+      throw new InvalidExpression(INVALID_MSG);
     }
   }
 
@@ -97,6 +99,21 @@ public class StandardCalc {
 
   private void addToOutput(Symbol added) {
     addToOutput(added.toString());
+  }
+  
+  /**
+   * Checks that the expression provided doesn't end with an operator.
+   * If it did, it is most possibly a reverse polish input and so throws an error.
+   * @param exp The expression that is to be checked.
+   * @throws InvalidExpression If the expression is determined to be in Reverse Polish Notation.
+   */
+  private void checkValid(String exp) throws InvalidExpression {
+    String[] symbols = {"+", "-", "*", "/"};
+    for (String sym : symbols) {
+      if (exp.endsWith(sym)) {
+        throw new InvalidExpression(INVALID_MSG);
+      }
+    }
   }
 
 }
