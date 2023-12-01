@@ -14,6 +14,7 @@ public class RevPolishCalc {
   public static final String INVALID_MSG =
       "Invalid Expression! Perhaps in the wrong format or unbalanced?";
   public static final String OVERFLOW_MSG = "Answer is too big!";
+
   private NumStack numStack = new NumStack();
 
   /**
@@ -30,7 +31,7 @@ public class RevPolishCalc {
           float num = scan.nextFloat();
 
           // Detect if number is too large for calculation.
-          if (num >= Float.MAX_VALUE) {
+          if (num >= Float.MAX_VALUE || num < Float.MAX_VALUE * -1) {
             throw new InvalidExpression(OVERFLOW_MSG);
           }
           numStack.push(num);
