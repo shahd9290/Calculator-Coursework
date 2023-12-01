@@ -68,6 +68,9 @@ public class StandardCalc {
             addToOutput(arg);
         }
       }
+      // Checks if the output is the same as the string, and if it's a single number.
+      // Otherwise checks if it ends with the correct operator for reverse polish notation.
+      // If neither of these are true then it pops all operators from opStack.
       if (output.trim().equals(string) && !string.contains(" ")) {
         return Float.parseFloat(output);
       } else if (opStack.size() == 0 && checkValid(output.trim())) {
