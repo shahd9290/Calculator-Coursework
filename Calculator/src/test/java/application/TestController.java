@@ -104,5 +104,9 @@ class TestController {
     mock.setExpression("( 2 + 3");
     mock.startView();
     assertEquals(RevPolishCalc.INVALID_MSG, mock.getAnswer());
+    
+    mock.setExpression("( 2 + 3");
+    mock.startView();
+    assertEquals(RevPolishCalc.INVALID_MSG, mock.getAnswer());
   }
 }

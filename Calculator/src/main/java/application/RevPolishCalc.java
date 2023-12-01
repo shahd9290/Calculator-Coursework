@@ -11,7 +11,8 @@ import java.util.Scanner;
 public class RevPolishCalc {
 
   public static final String DIVZERO_MSG = "Cannot Divide By Zero!";
-  public static final String INVALID_MSG = "Invalid Expression! Perhaps in the wrong format?";
+  public static final String INVALID_MSG =
+      "Invalid Expression! Perhaps in the wrong format or unbalanced?";
   public static final String OVERFLOW_MSG = "Answer is too big!";
   private NumStack numStack = new NumStack();
 
@@ -27,7 +28,7 @@ public class RevPolishCalc {
       while (scan.hasNext()) {
         if (scan.hasNextFloat()) {
           float num = scan.nextFloat();
-          
+
           // Detect if number is too large for calculation.
           if (num >= Float.MAX_VALUE) {
             throw new InvalidExpression(OVERFLOW_MSG);
