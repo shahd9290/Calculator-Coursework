@@ -97,4 +97,12 @@ class TestController {
     mock.startView();
     assertEquals("-1.0", mock.getAnswer());
   }
+  
+  @Test
+  void testEvaluateNine() {
+    mock.typeChange.accept(OpType.STANDARD);
+    mock.setExpression("( 2 + 3");
+    mock.startView();
+    assertEquals(RevPolishCalc.INVALID_MSG, mock.getAnswer());
+  }
 }
