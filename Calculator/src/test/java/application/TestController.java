@@ -78,4 +78,15 @@ class TestController {
     mock.startView();
     assertEquals(RevPolishCalc.INVALID_MSG, mock.getAnswer());
   }
+  
+  @Test
+  void testEvaluateSeven() {
+    mock.setExpression("4 6 2 +");
+    mock.startView();
+    assertEquals(RevPolishCalc.INVALID_MSG, mock.getAnswer());
+    
+    mock.setExpression("2 2 +");
+    mock.startView();
+    assertEquals("4.0", mock.getAnswer());
+  }
 }

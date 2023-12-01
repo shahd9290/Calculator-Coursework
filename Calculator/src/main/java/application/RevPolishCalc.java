@@ -24,7 +24,6 @@ public class RevPolishCalc {
    */
   public float evaluate(String string) throws InvalidExpression {
     try (Scanner scan = new Scanner(string);) {
-      Boolean answered = false;
       while (scan.hasNext()) {
         if (scan.hasNextFloat()) {
           float num = scan.nextFloat();
@@ -40,12 +39,10 @@ public class RevPolishCalc {
           float arg1 = numStack.pop();
 
           calculate(scan.next(), arg1, arg2);
-          answered = true;
         }
       }
-      if (!answered && numStack.size() > 1) {
-        // If the boolean is false, it means no calculation took place (likely no operators)
-        // It's an invalid expression as a result.
+      if (numStack.size() > 1) {
+        // If there are multiple items in numStack, it's likely to be an invalid expression.
         throw new InvalidExpression(INVALID_MSG);
       }
       return numStack.pop();
@@ -76,10 +73,8 @@ public class RevPolishCalc {
       default:
         // This will only occur when neither of the four aforementioned symbols are used as an
         // operator.
-        // The stack remains empty and an EmptyStackException is thrown in the return
-        // statement.
         // This will throw a new InvalidExpression.
-        break;
+        throw new InvalidExpression(INVALID_MSG);
     }
   }
 

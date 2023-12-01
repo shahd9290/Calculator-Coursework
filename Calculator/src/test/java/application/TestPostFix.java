@@ -130,7 +130,15 @@ class TestPostFix {
     assertEquals(except2.getMessage(), RevPolishCalc.INVALID_MSG);
   }
   
-  // Test 16 - Testing Arithmetics using Decimal Values.
+  // Test 16 - Test Other Invalid Expressions
+  // Fixed by removing boolean created and used in Test 12.
+  @Test
+  void testInvalidOthers() throws InvalidExpression {
+    InvalidExpression except = assertThrows(InvalidExpression.class, () -> rpc.evaluate("1 2 3 +"));
+    assertEquals(except.getMessage(), RevPolishCalc.INVALID_MSG);
+  }
+  
+  // Test 17 - Testing Arithmetics using Decimal Values.
   // Fixed by Replacing NextInt with NextFloat where necessary.
   @Test
   void testDecimalArithmetic() throws InvalidExpression{
@@ -141,7 +149,7 @@ class TestPostFix {
 
   }
   
-  // Test 17 - Testing Overflow (when value is >= Float.MAX_VALUE
+  // Test 18 - Testing Overflow (when value is >= Float.MAX_VALUE
   // Added if clause in the program to detect.
   @Test
   void testOverflow() throws InvalidExpression {
@@ -150,7 +158,7 @@ class TestPostFix {
     assertEquals(RevPolishCalc.OVERFLOW_MSG, except.getMessage());
   }
   
-  // Test 18 - Test Single Value Input
+  // Test 19 - Test Single Value Input
   @Test
   void testSingle() throws InvalidExpression {
     assertEquals(1.0, rpc.evaluate("1.0"));

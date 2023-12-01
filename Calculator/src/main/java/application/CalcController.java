@@ -15,6 +15,7 @@ public class CalcController {
       myView.setAnswer(String.valueOf(result));
     } catch (InvalidExpression invalid) {
       myView.setAnswer(invalid.getMessage());
+      myModel = new CalcModel();
     }
   }
 
