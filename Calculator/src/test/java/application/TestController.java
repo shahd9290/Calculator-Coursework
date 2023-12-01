@@ -89,4 +89,12 @@ class TestController {
     mock.startView();
     assertEquals("4.0", mock.getAnswer());
   }
+  
+  @Test
+  void testEvalauteEight() {
+    mock.typeChange.accept(OpType.STANDARD);
+    mock.setExpression("( 2 - 3 )");
+    mock.startView();
+    assertEquals("-1.0", mock.getAnswer());
+  }
 }

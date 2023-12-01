@@ -23,7 +23,9 @@ public class StandardCalc {
    */
 
   public float evaluate(String string) throws InvalidExpression {
-    checkValid(string);
+    if (!checkValid(string)) {
+      throw new InvalidExpression(RevPolishCalc.INVALID_MSG);
+    }
     output = "";
     try (Scanner scan = new Scanner(string)) {
       // Read each character in the string.
@@ -66,10 +68,12 @@ public class StandardCalc {
             addToOutput(arg);
         }
       }
-      // Pop all operators from the opStack
-      if (opStack.size() == 0 && string.contains(" ")) {
+      if (output.trim().equals(string) && !string.contains(" ")) {
+        return Float.parseFloat(output);
+      } else if (opStack.size() == 0 && checkValid(output.trim())) {
         throw new EmptyStackException(RevPolishCalc.INVALID_MSG);
       }
+      // Pop all operators from the opStack
       while (opStack.size() != 0) {
         addToOutput(opStack.pop());
       }
@@ -107,13 +111,14 @@ public class StandardCalc {
    * @param exp The expression that is to be checked.
    * @throws InvalidExpression If the expression is determined to be in Reverse Polish Notation.
    */
-  private void checkValid(String exp) throws InvalidExpression {
+  private boolean checkValid(String exp) throws InvalidExpression {
     String[] symbols = {"+", "-", "*", "/"};
     for (String sym : symbols) {
       if (exp.endsWith(sym)) {
-        throw new InvalidExpression(RevPolishCalc.INVALID_MSG);
+        return false;
       }
     }
+    return true;
   }
 
 }
