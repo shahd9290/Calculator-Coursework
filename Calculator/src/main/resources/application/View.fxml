@@ -13,10 +13,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="200.0" prefWidth="231.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalcView">
+<GridPane prefHeight="192.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalcView">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="54.0" />
-    <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="75.0" />
+    <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="456.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -25,8 +25,8 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField id="inputField" fx:id="inputField" prefHeight="26.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-      <TextField id="totalField" fx:id="totalField" editable="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <TextField id="inputField" fx:id="inputField" prefHeight="25.0" prefWidth="430.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+      <TextField id="totalField" fx:id="totalField" editable="false" prefHeight="25.0" prefWidth="430.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
       <Button id="calcButton" fx:id="calcButton" lineSpacing="2.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="164.0" text="Calculate" textFill="#3800b9" translateY="-6.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font name="System Bold" size="20.0" />

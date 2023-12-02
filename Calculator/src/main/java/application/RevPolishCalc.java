@@ -11,9 +11,10 @@ import java.util.Scanner;
 public class RevPolishCalc {
 
   public static final String DIVZERO_MSG = "Cannot Divide By Zero!";
-  public static final String INVALID_MSG = "Expression is invalid. "
-      + "Ensure two numbers are followed by a valid operator for it to be valid.";
+  public static final String INVALID_MSG =
+      "Invalid Expression! Perhaps in the wrong format or unbalanced?";
   public static final String OVERFLOW_MSG = "Answer is too big!";
+
   private NumStack numStack = new NumStack();
 
   /**
@@ -25,13 +26,12 @@ public class RevPolishCalc {
    */
   public float evaluate(String string) throws InvalidExpression {
     try (Scanner scan = new Scanner(string);) {
-      Boolean answered = false;
       while (scan.hasNext()) {
         if (scan.hasNextFloat()) {
           float num = scan.nextFloat();
-          
+
           // Detect if number is too large for calculation.
-          if (num >= Float.MAX_VALUE) {
+          if (num >= Float.MAX_VALUE || num < Float.MAX_VALUE * -1) {
             throw new InvalidExpression(OVERFLOW_MSG);
           }
           numStack.push(num);
@@ -41,12 +41,10 @@ public class RevPolishCalc {
           float arg1 = numStack.pop();
 
           calculate(scan.next(), arg1, arg2);
-          answered = true;
         }
       }
-      if (!answered && numStack.size() > 1) {
-        // If the boolean is false, it means no calculation took place (likely no operators)
-        // It's an invalid expression as a result.
+      if (numStack.size() > 1) {
+        // If there are multiple items in numStack, it's likely to be an invalid expression.
         throw new InvalidExpression(INVALID_MSG);
       }
       return numStack.pop();
@@ -77,10 +75,8 @@ public class RevPolishCalc {
       default:
         // This will only occur when neither of the four aforementioned symbols are used as an
         // operator.
-        // The stack remains empty and an EmptyStackException is thrown in the return
-        // statement.
         // This will throw a new InvalidExpression.
-        break;
+        throw new InvalidExpression(INVALID_MSG);
     }
   }
 

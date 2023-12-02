@@ -15,6 +15,7 @@ public class CalcController {
       myView.setAnswer(String.valueOf(result));
     } catch (InvalidExpression invalid) {
       myView.setAnswer(invalid.getMessage());
+      myModel = new CalcModel();
     }
   }
 
@@ -28,6 +29,4 @@ public class CalcController {
     view.addCalculateObserver(this::handleCalculation);
     view.addTypeObserver(this::handleTypeChange);
   }
-
-  CalcController() {}
 }

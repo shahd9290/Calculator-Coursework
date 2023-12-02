@@ -23,11 +23,10 @@ public class StandardCalc {
    */
 
   public float evaluate(String string) throws InvalidExpression {
-    output = "";
-    // If input is only one number.
-    if (string.length() == 1) {
-      return Float.parseFloat(string);
+    if (!checkValid(string)) {
+      throw new InvalidExpression(RevPolishCalc.INVALID_MSG);
     }
+    output = "";
     try (Scanner scan = new Scanner(string)) {
       // Read each character in the string.
       while (scan.hasNext()) {
@@ -69,10 +68,15 @@ public class StandardCalc {
             addToOutput(arg);
         }
       }
-      // Pop all operators from the opStack
-      if (opStack.size() == 0) {
+      // Checks if the output is the same as the string, and if it's a single number.
+      // Otherwise checks if it ends with the correct operator for reverse polish notation.
+      // If neither of these are true then it pops all operators from opStack.
+      if (output.trim().equals(string) && !string.contains(" ")) {
+        return Float.parseFloat(output);
+      } else if (opStack.size() == 0 && checkValid(output.trim())) {
         throw new EmptyStackException(RevPolishCalc.INVALID_MSG);
       }
+      // Pop all operators from the opStack
       while (opStack.size() != 0) {
         addToOutput(opStack.pop());
       }
@@ -101,6 +105,23 @@ public class StandardCalc {
 
   private void addToOutput(Symbol added) {
     addToOutput(added.toString());
+  }
+
+  /**
+   * Checks that the expression provided doesn't end with an operator. If it did, it is most
+   * possibly a reverse polish input and so throws an error.
+   * 
+   * @param exp The expression that is to be checked.
+   * @throws InvalidExpression If the expression is determined to be in Reverse Polish Notation.
+   */
+  private boolean checkValid(String exp) throws InvalidExpression {
+    String[] symbols = {"+", "-", "*", "/"};
+    for (String sym : symbols) {
+      if (exp.endsWith(sym)) {
+        return false;
+      }
+    }
+    return true;
   }
 
 }
