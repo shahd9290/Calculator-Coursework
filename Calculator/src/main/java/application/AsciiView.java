@@ -27,12 +27,20 @@ public class AsciiView implements ViewInterface {
       String t = s.next();
       switch (t.toUpperCase().charAt(0)) {
         case 'C': // Ask the controller to calculate
+          doCalculation.run();
           break;
         case '?': // Set current question
+          question = s.nextLine();
           break;
         case 'Q':
           System.out.println("Bye");
           finished = true;
+          break;
+        case 'S':
+          setCalculatorType.accept(OpType.STANDARD);
+          break;
+        case 'R':
+          setCalculatorType.accept(OpType.REV_POLISH);
           break;
         default:
           help();
@@ -52,19 +60,23 @@ public class AsciiView implements ViewInterface {
 
   @Override
   public String getExpression() {
-    return "0";
+    return question;
   }
 
   @Override
   public void setAnswer(String answer) {
-    System.out.println("Answer is just around the corner");
+    System.out.println(answer);
   }
 
   @Override
-  public void addCalculateObserver(Runnable f) {}
+  public void addCalculateObserver(Runnable f) {
+    doCalculation = f;
+  }
 
   @Override
-  public void addTypeObserver(Consumer<OpType> c) {}
+  public void addTypeObserver(Consumer<OpType> c) {
+    setCalculatorType = c;
+  }
 
   @Override
   public void startView() {
