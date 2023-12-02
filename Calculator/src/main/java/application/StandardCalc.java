@@ -61,7 +61,7 @@ public class StandardCalc {
             Symbol sym;
             // Pop operators until the symbol popped is a left bracket.
             while ((sym = opStack.pop()) != Symbol.LEFT_BRACKET) {
-              addToOutput(sym);
+              addToOutput(sym.toString());
             }
             break;
           default:
@@ -78,7 +78,7 @@ public class StandardCalc {
       }
       // Pop all operators from the opStack
       while (opStack.size() != 0) {
-        addToOutput(opStack.pop());
+        addToOutput(opStack.pop().toString());
       }
       return rpc.evaluate(output);
 
@@ -95,16 +95,12 @@ public class StandardCalc {
    */
   private void isPriority(Symbol sym) throws EmptyStackException {
     if (opStack.size() > 0 && sym.ordinal() > opStack.top().ordinal()) {
-      addToOutput(opStack.pop());
+      addToOutput(opStack.pop().toString());
     }
   }
 
   private void addToOutput(String added) {
     output = output + added + " ";
-  }
-
-  private void addToOutput(Symbol added) {
-    addToOutput(added.toString());
   }
 
   /**
