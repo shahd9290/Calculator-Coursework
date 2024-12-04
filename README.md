@@ -7,3 +7,4 @@ The calculator supports Standard and Reverse Polish expressions, and comes with 
 
 The Interface was provided to me for the assignment. My responsibility was to focus on the calculations through the use of different stacks and algorithms.
 
+Grade: 85/100
