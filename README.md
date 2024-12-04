@@ -1,6 +1,9 @@
-# CS2800
+# CS2800: Calculator Coursework
+## October 2023 - December 2023
 
-This repository has been created to store your CS2800 work.
+This assignment had me develop a calculator application, following Test Driven Development.
 
-You may edit it as you like, but please do not remove the default topics or the project members list. These need to stay as currently defined in order for your lecturer to be able to find and mark your work.
+The calculator supports Standard and Reverse Polish expressions, and comes with a Terminal and GUI View.
+
+The Interface was provided to me for the assignment. My responsibility was to focus on the calculations through the use of different stacks and algorithms.
 
